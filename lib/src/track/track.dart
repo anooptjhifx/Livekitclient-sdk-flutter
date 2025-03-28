@@ -13,11 +13,10 @@
 // limitations under the License.
 
 import 'dart:async';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
-
 import '../events.dart';
 import '../extensions.dart';
 import '../internal/events.dart';
@@ -130,9 +129,9 @@ abstract class Track extends DisposableChangeNotifier
     await onStopped();
 
     logger.fine('$objectId.stop()');
-
+if (!kIsWeb) {
     await mediaStreamTrack.stop();
-
+}
     _active = false;
     return true;
   }
